@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>LifeQuest — Your Life, Gamified</title>
+<title>Liviu — Your Life, Gamified</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <style>
@@ -243,9 +243,9 @@ input,select,textarea{font-family:inherit;color:inherit;}
 
 <script>
 /* =========================================================
-   LIFEQUEST — state, persistence, rendering
+   LIVIU — state, persistence, rendering
    ========================================================= */
-const STORAGE_KEY = 'lifequest-state-v1';
+const STORAGE_KEY = 'liviu-state-v1';
 const uid = (p='id') => p+'-'+Math.random().toString(36).slice(2,9);
 const todayStr = (d=new Date()) => d.toISOString().slice(0,10);
 const pad = n => String(n).padStart(2,'0');

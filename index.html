@@ -229,6 +229,7 @@ input,select,textarea{font-family:inherit;color:inherit;}
   <div id="topbar"></div>
 
   <div id="views">
+    <div class="view" id="view-home"></div>
     <div class="view" id="view-calendar"></div>
     <div class="view" id="view-quest"></div>
     <div class="view" id="view-feed"></div>
@@ -473,12 +474,12 @@ function renderTopbar(){
    BOTTOM NAV
    ========================================================= */
 const NAV_ITEMS = [
+  {id:'home', icon:'🏠', label:'Home'},
   {id:'calendar', icon:'🗓️', label:'Calendar'},
-  {id:'quest', icon:'📜', label:'Quest Log'},
-  {id:'feed', icon:'👥', label:'Feed'},
+  {id:'quest', icon:'🗡️', label:'Quests'},
   {id:'profile', icon:'👤', label:'Profile'},
 ];
-let currentView='calendar';
+let currentView='home';
 function renderNav(){
   const el = document.getElementById('bottomnav');
   el.innerHTML = NAV_ITEMS.map(n=>`
@@ -493,9 +494,9 @@ function switchView(id){
   document.getElementById('view-'+id).classList.add('active');
   document.getElementById('fabAdd').style.display = (id==='calendar')?'flex':'none';
   renderNav();
+  if(id==='home') renderHome();
   if(id==='calendar') renderCalendar();
   if(id==='quest') renderQuest();
-  if(id==='feed') renderFeed();
   if(id==='profile') renderProfile();
 }
 
@@ -506,6 +507,29 @@ let selectedDate = todayStr();
 let calRange = 'day'; // for stats chart: day/week/month/year
 function fmtDow(d){ return ['MIN','SEN','SEL','RAB','KAM','JUM','SAB'][d.getDay()]; }
 
+function renderHome(){
+    const el = document.getElementById('view-home');
+
+    el.innerHTML = `
+        <div class="section-title">
+            🏠 Welcome Back
+        </div>
+
+        <div class="card">
+            <h2>Good Morning, ${state.profile.name} 👋</h2>
+            <p>Level ${state.profile.level}</p>
+            <p>Let's level up your real life today!</p>
+        </div>
+
+        <div class="section-title">
+            ⭐ Today's Focus
+        </div>
+
+        <div class="card">
+            Tap Calendar to plan your day.
+        </div>
+    `;
+}
 function renderCalendar(){
   const el = document.getElementById('view-calendar');
   const base = new Date();
